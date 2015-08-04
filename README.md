@@ -1,5 +1,5 @@
 # score-element
-A web component that I mainly use to pick a numeric score value from a predefined numeric range. The numeric range can be set by choosing a start and an end value. You can also define a step size (default is 1) and decimal precision (default is 0). The selected value can be get or set via the selected property.
+A web component that I mainly use to pick a numeric score value from a predefined numeric range. The numeric range can be set by choosing a start and an end value. You can also define a step size (default is 1) and decimal precision (default is 0). The selected value can be get or set via the selected property. It uses the <a href="https://github.com/Protoss78/paper-button-group">paper-button-group</a> web component to generate the required paper-buttons. One button per calculated step is created.
 
 Example:
 
@@ -21,4 +21,4 @@ Available Style Variables:
 --selected--text-score-color: Defines the text color of the button in hover state
 ```
 
-It uses the <a href="https://github.com/Protoss78/paper-button-group">paper-button-group</a> web component to generate the required paper-buttons. One button per calculated step is created.
+A working example can be found in the <a href="https://github.com/Protoss78/score-element/blob/master/demo/demo-app.html">demo application</a>
