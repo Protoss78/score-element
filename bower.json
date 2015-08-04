@@ -1,0 +1,20 @@
+{
+  "name": "score-element",
+  "version": "0.0.1",
+  "authors": [
+    "Roman Kaufmann <roman.kaufmann.at@gmail.com>"
+  ],
+  "main": "score-element.html",
+  "description": "A web component that lets you select a specific numeric value from a predefined numeric range. The range is defined with a start and an end value. You can also define a numeric step size as well as a decimal precision value.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-button-group": "Protoss78/paper-button-group"
+  }
+}

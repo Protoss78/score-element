@@ -1,0 +1,86 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-button-group/paper-button-group.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<dom-module id="score-element">
+    <style>
+    paper-button-group {
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+        @apply(--layout-wrap);
+    }
+    
+    paper-button {
+        margin: 0.2em;
+        background: var(--button-score-color);
+        color: var(--text-score-color);
+        --paper-button-checked-color: var(--checked-score-color);
+        --paper-button-checked-ink-color: var(--checked-score-color);
+        --paper-button-unchecked-color: var(--unchecked-score-color);
+        --paper-button-unchecked-ink-color: var(--unchecked-score-color);
+    }
+
+	paper-button:hover {
+        background: var(--hover-score-color);
+        color: var(--hover-text-score-color);
+    }
+
+    paper-button[toggles] {
+        transition: background-color 0.3s;
+    }
+        
+    paper-button[toggles][active] {
+        background-color: var(--selected-score-color);
+        color: var(--selected--text-score-color);
+    }
+
+    </style>
+    <template>
+        <paper-button-group selected="{{selected}}" class="vertical layout flex wrap">
+            <template is="dom-repeat" items="[[valueArray]]">
+                <paper-button toggles raised name="[[item]]">[[item]]</paper-button>
+            </template>
+        </paper-button-group>
+    </template>
+</dom-module>
+<script>
+Polymer({
+    is: 'score-element',
+    properties: {
+        start: {
+            type: Number,
+            value: 0
+        },
+        end: {
+            type: Number,
+            value: 10
+        },
+        step: {
+            type: Number,
+            value: 1
+        },
+        decimals: {
+            type: Number,
+            value: 0
+        },
+        selected: {
+            type: Number,
+            notify: true
+        },
+        valueArray: {
+            type: Array,
+            computed: 'calculateArray(start, end, step, decimals)'
+        }
+    },
+    calculateArray: function(start, end, step, decimals) {
+        var newArray = [];
+        var min = Number(start);
+        var max = Number(end);
+        var multiplier = Math.pow(10, decimals);
+        var stepValue = Number(step);
+        for (var i = min; Math.floor(i * multiplier) <= Math.floor(max * multiplier); i = i + stepValue) {
+            newArray.push(i.toFixed(decimals));
+        }
+        return newArray;
+    }
+});
+</script>
