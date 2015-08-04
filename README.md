@@ -13,11 +13,11 @@ Example:
 
 Available Style Variables:
 ```
---button-score-color: Defines the background color of the button
---text-score-color: Defines the text color of the button
---hover-score-color: Defines the background color of the button in hover state
---hover-text-score-color: Defines the text color of the button in hover state
---selected-score-color: Defines the background color of the button in selected state
+--button-score-color:         Defines the background color of the button
+--text-score-color:           Defines the text color of the button
+--hover-score-color:          Defines the background color of the button in hover state
+--hover-text-score-color:     Defines the text color of the button in hover state
+--selected-score-color:       Defines the background color of the button in selected state
 --selected--text-score-color: Defines the text color of the button in hover state
 ```
 
