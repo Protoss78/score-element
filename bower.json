@@ -4,6 +4,12 @@
   "authors": [
     "Roman Kaufmann <roman.kaufmann.at@gmail.com>"
   ],
+  "keywords": [
+    "polymer",
+    "web-components",
+    "paper-button-group",
+    "score-element"
+  ],
   "main": "score-element.html",
   "description": "A web component that lets you select a specific numeric value from a predefined numeric range. The range is defined with a start and an end value. You can also define a numeric step size as well as a decimal precision value.",
   "license": "MIT",
