@@ -22,24 +22,29 @@
         --paper-button-unchecked-color: var(--unchecked-score-color);
         --paper-button-unchecked-ink-color: var(--unchecked-score-color);
     }
-
-	paper-button:hover {
+    
+    @media (max-width: 600px) {
+        paper-button { 
+            min-width: 2.5em;
+        }
+    }
+    
+    paper-button:hover {
         background: var(--hover-score-color);
         color: var(--hover-text-score-color);
     }
-
+    
     paper-button[toggles] {
         transition: background-color 0.3s;
     }
-        
+    
     paper-button[toggles][active] {
         background-color: var(--selected-score-color);
         color: var(--selected--text-score-color);
     }
-
     </style>
     <template>
-        <paper-button-group selected="{{selected}}" class="vertical layout flex wrap">
+        <paper-button-group selected="{{selected}}" class="layout flex wrap">
             <template is="dom-repeat" items="[[valueArray]]">
                 <paper-button toggles raised name="[[item]]">[[item]]</paper-button>
             </template>
