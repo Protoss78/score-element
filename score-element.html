@@ -52,7 +52,7 @@
   <template>
     <paper-button-group selected="{{selected}}" class="layout flex wrap">
       <template is="dom-repeat" items="[[valueArray]]">
-        <paper-button class="flex" toggles raised name="[[item]]" on-click="onButton">[[item]]</paper-button>
+        <paper-button toggles raised name="[[item]]" on-click="onButton">[[item]]</paper-button>
       </template>
     </paper-button-group>
   </template>
