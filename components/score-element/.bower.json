@@ -1,0 +1,38 @@
+{
+  "name": "score-element",
+  "authors": [
+    "Roman Kaufmann <roman.kaufmann.at@gmail.com>"
+  ],
+  "keywords": [
+    "polymer",
+    "web-components",
+    "paper-button-group",
+    "score-element"
+  ],
+  "main": "score-element.html",
+  "description": "A web component that lets you select a specific numeric value from a predefined numeric range. The range is defined with a start and an end value. You can also define a numeric step size as well as a decimal precision value.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-button-group": "Protoss78/paper-button-group",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  },
+  "homepage": "https://github.com/protoss78/score-element",
+  "_release": "59ab3e081e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "59ab3e081eb657ff2bb5050aaca01fb2573d65f5"
+  },
+  "_source": "git://github.com/protoss78/score-element.git",
+  "_target": "master",
+  "_originalSource": "protoss78/score-element",
+  "_direct": true
+}
