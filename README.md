@@ -1,3 +1,5 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/Protoss78/score-element)
+
 # score-element
 A web component that I mainly use to pick a numeric score value from a predefined numeric range. The numeric range can be set by choosing a start and an end value. You can also define a step size (default is 1) and decimal precision (default is 0). The selected value can be get or set via the selected property. It uses the <a href="https://github.com/Protoss78/paper-button-group">paper-button-group</a> web component to generate the required paper-buttons. One button per calculated step is created.
 
