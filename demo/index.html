@@ -7,16 +7,115 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="demo-app.html">
-    <style>
-    body {
-        background-color: #F9F9F9;
-    }
+    <link rel="import" href="../../polymer/polymer.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+    <link rel="import" href="../../paper-styles/paper-styles.html">
+    <link rel="import" href="../score-element.html">
+
+    <style is="custom-style" include="iron-flex">
+        [header] {
+            @apply --layout-horizontal;
+            @apply --layout-flex;
+        }
+
+        [left] {
+            @apply --layout-flex;
+            text-align: start;
+        }
+
+        [right] {
+            @apply --layout-flex;
+            text-align: end;
+        }
+
+        score-element.red {
+            --button-score-color: var(--paper-red-50);
+            --text-score-color: black;
+            --hover-score-color: var(--paper-red-200);
+            --selected-score-color: var(--paper-red-500);
+            --selected--text-score-color: white;
+        }
+
+        score-element.green {
+            --button-score-color: var(--paper-light-green-50);
+            --text-score-color: black;
+            --hover-score-color: var(--paper-light-green-200);
+            --selected-score-color: var(--paper-light-green-500);
+            --selected--text-score-color: white;
+        }
+
     </style>
 </head>
 
 <body unresolved>
-    <demo-app></demo-app>
+<div class="centered">
+    <h4>A simple example</h4>
+    <demo-snippet>
+        <template>
+            <dom-bind>
+                <template>
+                    <h4>Score 1: {{select1}}</h4>
+                    <score-element selected="{{select1}}"></score-element>
+                </template>
+            </dom-bind>
+        </template>
+    </demo-snippet>
+    <h4>Decimal value example</h4>
+    <demo-snippet>
+        <template>
+            <dom-bind>
+                <template>
+                    <h4>Score 2: {{select2}}</h4>
+                    <score-element start="0.5" end="2.0" step="0.1" decimals="1" selected="{{select2}}"></score-element>
+                </template>
+            </dom-bind>
+        </template>
+    </demo-snippet>
+    <h4>A style example</h4>
+    <demo-snippet>
+        <template>
+            <dom-bind>
+                <template>
+                    <style include="iron-flex">
+                        score-element.red {
+                            --button-score-color: var(--paper-red-50);
+                            --text-score-color: black;
+                            --hover-score-color: var(--paper-red-200);
+                            --selected-score-color: var(--paper-red-500);
+                            --selected--text-score-color: white;
+                        }
+                    </style>
+                    <h4>Score 3: {{select3}}</h4>
+                    <score-element class="red" start="0.5" end="2.0" step="0.1" decimals="1"
+                                   selected="{{select3}}"></score-element>
+                </template>
+            </dom-bind>
+        </template>
+    </demo-snippet>
+    <h4>Left to right example</h4>
+    <demo-snippet>
+        <template>
+            <dom-bind>
+                <template>
+                    <style>
+                        score-element.green {
+                            --button-score-color: var(--paper-light-green-50);
+                            --text-score-color: black;
+                            --hover-score-color: var(--paper-light-green-200);
+                            --selected-score-color: var(--paper-light-green-500);
+                            --selected--text-score-color: white;
+                        }
+                    </style>
+                    <h4>Score 4: {{select4}}</h4>
+                    <score-element class="green" start="0.5" end="2.0" step="0.1" decimals="1" selected="{{select4}}"
+                                   ltr></score-element>
+                </template>
+            </dom-bind>
+        </template>
+    </demo-snippet>
+</div>
 </body>
 
 </html>

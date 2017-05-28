@@ -2,111 +2,175 @@
 <link rel="import" href="../paper-button-group/paper-button-group.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <!--
+  A web component that lets the user select a numeric value from a defined range.
+  Every selectable value will be displayed as paper-button.
+
+  ### Example:
+    <score-element selected="{{select1}}"></score-element>
+    <score-element start="0.5" end="2.0" step="0.1" decimals="1" selected="{{select2}}"></score-element>
+    <score-element class="green" start="0.5" end="2.0" step="0.1" decimals="1" selected="{{select4}}"
+                                   ltr></score-element>
+
+  ### Styling:
+    --button-score-color:         Defines the background color of the button
+    --text-score-color:           Defines the text color of the button
+    --hover-score-color:          Defines the background color of the button in hover state
+    --hover-text-score-color:     Defines the text color of the button in hover state
+    --selected-score-color:       Defines the background color of the button in selected state
+    --selected--text-score-color: Defines the text color of the button in hover state
+
+
 @element score-element
 @demo demo/index.html
 -->
 <dom-module id="score-element">
-  <style>
-  paper-button-group {
-    @apply(--layout-horizontal);
-    @apply(--layout-center-center);
-    @apply(--layout-wrap);
-  }
-  
-  paper-button {
-    margin: 0.2em;
-    background: var(--button-score-color);
-    color: var(--text-score-color);
-    --paper-button-checked-color: var(--checked-score-color);
-    --paper-button-checked-ink-color: var(--checked-score-color);
-    --paper-button-unchecked-color: var(--unchecked-score-color);
-    --paper-button-unchecked-ink-color: var(--unchecked-score-color);
-  }
-  
-  @media (max-width: 800px) {
-    paper-button {
-      min-width: 3em;
-      margin-left: 0em;
-      margin-right: 0em;
-      margin-top: 0em;
-      margin-bottom: 0.5em;
-      font-size: 1em;
-      padding: 0.5em;
-    }
-  }
-  
-  paper-button:hover {
-    background: var(--hover-score-color);
-    color: var(--hover-text-score-color);
-  }
-  
-  paper-button[toggles] {
-    transition: background-color 0.3s;
-  }
-  
-  paper-button[toggles][active] {
-    background-color: var(--selected-score-color);
-    color: var(--selected--text-score-color);
-  }
-  </style>
-  <template>
-    <paper-button-group selected="{{selected}}" class="layout flex wrap">
-      <template is="dom-repeat" items="[[valueArray]]">
-        <paper-button toggles raised name="[[item]]" on-tap="onButton">[[item]]</paper-button>
-      </template>
-    </paper-button-group>
-  </template>
+    <template>
+        <style>
+            paper-button-group {
+                @apply(--layout-horizontal);
+                @apply(--layout-center-center);
+                @apply(--layout-wrap);
+            }
+
+            paper-button {
+                margin: 0.2em;
+                min-width: 3em;
+                background: var(--button-score-color);
+                color: var(--text-score-color);
+                --paper-button-checked-color: var(--checked-score-color);
+                --paper-button-checked-ink-color: var(--checked-score-color);
+                --paper-button-unchecked-color: var(--unchecked-score-color);
+                --paper-button-unchecked-ink-color: var(--unchecked-score-color);
+            }
+
+            @media (max-width: 800px) {
+                paper-button {
+                    min-width: 1em;
+                    margin-left: 0em;
+                    margin-right: 0em;
+                    margin-top: 0em;
+                    margin-bottom: 0.5em;
+                    font-size: 1em;
+                    padding: 0.5em;
+                }
+            }
+
+            paper-button:hover {
+                background: var(--hover-score-color);
+                color: var(--hover-text-score-color);
+            }
+
+            paper-button[toggles] {
+                transition: background-color 0.3s;
+            }
+
+            paper-button[toggles][active] {
+                background-color: var(--selected-score-color);
+                color: var(--selected--text-score-color);
+            }
+        </style>
+        <paper-button-group selected="{{selected}}" attr-for-selected="name" class="layout flex wrap">
+            <template is="dom-repeat" items="[[_valueArray]]">
+                <paper-button raised name="[[item]]" on-tap="onButton">[[item]]</paper-button>
+            </template>
+        </paper-button-group>
+    </template>
 </dom-module>
 <script>
-Polymer({
-  is: 'score-element',
-  properties: {
-    start: {
-      type: Number,
-      value: 0
-    },
-    ltr: {
-      type: Boolean,
-      value: false
-    },
-    end: {
-      type: Number,
-      value: 10
-    },
-    step: {
-      type: Number,
-      value: 1
-    },
-    decimals: {
-      type: Number,
-      value: 0
-    },
-    selected: {
-      type: Number,
-      notify: true
-    },
-    valueArray: {
-      type: Array,
-      computed: 'calculateArray(start, end, step, decimals)'
-    }
-  },
-  onButton: function() {
-    this.fire('change');
-  },
-  calculateArray: function(start, end, step, decimals) {
-    var newArray = [];
-    var min = Number(start);
-    var max = Number(end);
-    var multiplier = Math.pow(10, decimals);
-    var stepValue = Number(step);
-    for (var i = min; Math.floor(i * multiplier) <= Math.floor(max * multiplier); i = i + stepValue) {
-      newArray.push(i.toFixed(decimals));
-    }
-    if (this.ltr) {
-      return newArray.reverse();
-    } else {
-      return newArray;
-    }
-  }
-});
+    Polymer({
+        is: 'score-element',
+        properties: {
+            /**
+             * The start value of the score range.
+             *
+             * @attribute start
+             * @type Number
+             * @default 0
+             */
+            start: {
+                type: Number,
+                value: 0
+            },
+            /**
+             * True if the highest score value should be displayed on the left side.
+             *
+             * @attribute ltr
+             * @type Boolean
+             * @default false
+             */
+            ltr: {
+                type: Boolean,
+                value: false
+            },
+            /**
+             * The end value of the score range.
+             *
+             * @attribute end
+             * @type Number
+             * @default 10
+             */
+            end: {
+                type: Number,
+                value: 10
+            },
+            /**
+             * The step size for the score range.
+             *
+             * @attribute step
+             * @type Number
+             * @default 1
+             */
+            step: {
+                type: Number,
+                value: 1
+            },
+            /**
+             * The number of decimal positions to display.
+             *
+             * @attribute decimals
+             * @type Number
+             * @default 0
+             */
+            decimals: {
+                type: Number,
+                value: 0
+            },
+            /**
+             * The currently selected score.
+             *
+             * @attribute selected
+             * @type Number
+             * @notify true
+             */
+            selected: {
+                type: Number,
+                notify: true
+            },
+            /**
+             * The currently calculated value array.
+             *
+             * @attribute _valueArray
+             * @type Array
+             */
+            _valueArray: {
+                type: Array,
+                computed: '_calculateArray(start, end, step, decimals)'
+            }
+        },
+        _calculateArray: function (start, end, step, decimals) {
+            var newArray = [];
+            var min = Number(start);
+            var max = Number(end);
+            var multiplier = Math.pow(10, decimals);
+            var stepValue = Number(step);
+            for (var i = min; Math.floor(i * multiplier) <= Math.floor(max * multiplier); i = i + stepValue) {
+                newArray.push(i.toFixed(decimals));
+            }
+            if (this.ltr) {
+                return newArray.reverse();
+            } else {
+                return newArray;
+            }
+        }
+    });
 </script>

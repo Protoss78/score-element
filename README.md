@@ -20,5 +20,3 @@ Available Style Variables:
 --selected-score-color:       Defines the background color of the button in selected state
 --selected--text-score-color: Defines the text color of the button in hover state
 ```
-
-A working example can be found in the <a href="http://protoss78.github.io/score-element/">demo application</a>
